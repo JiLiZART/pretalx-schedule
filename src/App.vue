@@ -29,28 +29,29 @@
 				bunt-select(name="timezone", :options="[{id: schedule.timezone, label: schedule.timezone}, {id: userTimezone, label: userTimezone}]", v-model="currentTimezone", @blur="saveTimezone")
 			template(v-else)
 				div.timezone-label.bunt-tab-header-item {{ schedule.timezone }}
-		bunt-tabs.days(v-if="days && days.length > 1", :active-tab="currentDay && currentDay.format()", ref="tabs" :class="showGrid? ['grid-tabs'] : ['list-tabs']")
-			bunt-tab(v-for="day in days", :id="day.format()", :header="day.format(dateFormat)", @selected="changeDay(day)")
-		grid-schedule(v-if="showGrid",
-			:sessions="sessions",
-			:rooms="rooms",
-			:currentDay="currentDay",
-			:now="now",
-			:scrollParent="scrollParent",
-			:favs="favs",
-			@changeDay="currentDay = $event",
-			@fav="fav($event)",
-			@unfav="unfav($event)")
-		linear-schedule(v-else,
-			:sessions="sessions",
-			:rooms="rooms",
-			:currentDay="currentDay",
-			:now="now",
-			:scrollParent="scrollParent",
-			:favs="favs",
-			@changeDay="currentDay = $event",
-			@fav="fav($event)",
-			@unfav="unfav($event)")
+		div.schedule-container
+			bunt-tabs.days(v-if="days && days.length > 1", :active-tab="currentDay && currentDay.format()", ref="tabs" :class="showGrid? ['grid-tabs'] : ['list-tabs']")
+				bunt-tab(v-for="day in days", :id="day.format()", :header="day.format(dateFormat)", @selected="changeDay(day)")
+			grid-schedule(v-if="showGrid",
+				:sessions="sessions",
+				:rooms="rooms",
+				:currentDay="currentDay",
+				:now="now",
+				:scrollParent="scrollParent",
+				:favs="favs",
+				@changeDay="currentDay = $event",
+				@fav="fav($event)",
+				@unfav="unfav($event)")
+			linear-schedule(v-else,
+				:sessions="sessions",
+				:rooms="rooms",
+				:currentDay="currentDay",
+				:now="now",
+				:scrollParent="scrollParent",
+				:favs="favs",
+				@changeDay="currentDay = $event",
+				@fav="fav($event)",
+				@unfav="unfav($event)")
 	bunt-progress-circular(v-else, size="huge", :page="true")
 	.error-messages(v-if="errorMessages.length")
 		.error-message(v-for="message in errorMessages", :key="message")
@@ -370,6 +371,10 @@ export default {
 </script>
 <style lang="stylus">
 @import 'styles/global.styl'
+
+.schedule-container
+	flex: auto
+
 .schedule-error
 	color: $clr-error
 	font-size: 18px

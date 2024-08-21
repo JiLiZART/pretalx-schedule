@@ -7,8 +7,8 @@ Vue.config.productionTip = false
 new Vue({
 	render: h => h(App, {
 		props: {
-			eventUrl: 'https://pretalx.com/democon/',
-			locale: 'en-ie'
+			eventUrl: 'https://pretalx.com/baltic-honeybadger-2024/',
+			locale: 'en-ie',
 		}
 	})
 }).$mount('#app')

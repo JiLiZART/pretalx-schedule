@@ -131,7 +131,7 @@ export default {
 .c-linear-schedule-session, .break
 	z-index: 10
 	display: flex
-	min-width: 300px
+	min-width: 200px
 	min-height: 96px
 	margin: 8px
 	overflow: hidden
